@@ -1,0 +1,101 @@
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748297329 -0700	commit (initial): Initial commit: Slack bot with OAuth implementation
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748297396 -0700	reset: moving to HEAD
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748306200 -0700	commit: feat: Implement Slack bot with PropelAuth integration
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748385166 -0700	commit: feat: Complete Slack-PropelAuth OAuth2 integration with user mapping and database persistence
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748546962 -0700	commit: 🚀 Add comprehensive deployment infrastructure with Docker, CI/CD, and testing
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748547094 -0700	commit: 🔧 Fix CI workflow syntax error in secrets reference
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748547179 -0700	commit: 🔧 Remove problematic notification job from CI pipeline
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748547417 -0700	commit: Fix CI/CD pipeline: use Poetry, fix test config, correct imports
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748547645 -0700	commit: Fix CI permissions and mypy config for better compatibility
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748547833 -0700	commit: Debug CI: remove security upload, add debugging, fix Python path
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748547935 -0700	commit: Add detailed CI debugging and minimal test approach
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748548035 -0700	commit: Simplify CI: minimal test approach with clear import testing
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748548088 -0700	commit: Fix YAML syntax error: simplify Python import testing
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748548318 -0700	commit: Fix dependency conflicts and CI issues: Update Supabase to v2.15.0 and PostgREST to v0.19.0 for compatibility, regenerate poetry.lock, remove invalid --show-source flag from ruff command
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748548465 -0700	commit: Debug CI workflow: Add verbose logging and cache busting to identify failure cause
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748548758 -0700	commit: Fix CI: Remove .env file conflicts and ensure DEVELOPMENT_MODE=true in all test steps
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748549242 -0700	commit: Fix GHCR permissions: Add packages write permission and handle repository name case sensitivity
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748890625 -0700	commit: feat: Multi-service AI bot with beautiful table display - Transform single NL2SQL bot into comprehensive AI assistant with intelligent routing, mobile-optimized table formatting, @mention support, and COUNT query handling
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748892610 -0700	commit: 🚀 Transform monolithic Slack bot into microservice architecture - Complete AI service separation with independent scaling, HTTP REST API, Docker orchestration, health monitoring, and comprehensive documentation
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748892946 -0700	commit: 🧹 Clean up repository and fix CI/CD issues - Remove redundant documentation and test files - Fix dependency conflicts in AI microservice - Update README with modern microservice architecture - Regenerate Poetry lock file for CI compatibility
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748893123 -0700	commit: 🔧 Fix CI/CD and testing issues - Make OpenAI API key optional for development/testing - Update test configuration with proper environment variables - Fix CORS test to use GET request instead of OPTIONS - Fix AI microservice dependency conflict with httpx==0.24.1 - Tests now pass and Docker build works properly
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748894943 -0700	commit: ✨ Add /test-executions slash command - New command to retrieve last k test executions for a test ID - Beautiful table formatting with status emojis and summary - Supports flexible syntax: testid k or testid limit=k - Includes comprehensive test suite and validation - Integrates with existing microservice architecture
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748895464 -0700	commit: 🔧 Fix /test-executions command routing - Add missing HTTP endpoint in handlers.py - Command was registered in registry but missing route handler - Now properly handles Slack form submissions
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748985789 -0700	commit: Implement PropelAuth API integration for authenticated report links - Updated ReportService to use proper API endpoints, fixed payload format, removed fallback logic, added access token creation, fixed Docker dependencies
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748985811 -0700	commit: Add utility scripts for PropelAuth debugging and user management
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1748986235 -0700	commit: Remove temporary demo/test scripts - keep only formal test suite
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749157072 -0700	commit: feat: migrate to api.example.com domain and fix health checks - Updated connect-slack command, fixed AI microservice health checks, added documentation
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749159137 -0700	commit: feat: add Ryvn deployment workflow
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749159299 -0700	commit: fix: update Ryvn action name
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749159870 -0700	commit: feat: Configure Ryvn deployment workflow
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749164035 -0700	commit: fix: update docker registry tag format in ryvn config
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749164196 -0700	commit: fix: update ryvn actions to v2 and add explicit actions configuration
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749164267 -0700	commit: fix: move ryvn actions to dedicated workflow file
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749164345 -0700	commit: feat: add local install-ryvn action
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749164661 -0700	commit: feat: update ryvn config with client auth and remove github actions dependency
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749164766 -0700	commit: fix: update ryvn config with correct registry and auth placement
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749164877 -0700	commit: fix: simplify ryvn config and remove unnecessary components
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749165183 -0700	commit: fix: update docker tag template to use valid format
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749165359 -0700	commit: simplify: remove custom registry config and let Ryvn handle image tagging
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749165482 -0700	commit: switch to Docker Hub registry with valid tag format
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749165698 -0700	commit: fix: ensure valid docker tag format and add proper labels
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749165883 -0700	checkout: moving from main to main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749165884 -0700	checkout: moving from main to feature/ryvn-setup
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749165891 -0700	commit: feat: fresh ryvn configuration setup
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166016 -0700	commit: fix: update tag templates to handle both PR and commit SHA tags
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166236 -0700	checkout: moving from feature/ryvn-setup to main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166237 -0700	checkout: moving from main to feature/ryvn-setup-v2
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166267 -0700	commit: feat: simplify ryvn configuration with static tag
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166422 -0700	commit: feat: remove custom registry config
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166423 -0700	checkout: moving from feature/ryvn-setup-v2 to main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166423 -0700	checkout: moving from main to feature/ryvn-setup-v3
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166440 -0700	reset: moving to <HEX_SECRET>
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166440 -0700	checkout: moving from feature/ryvn-setup-v3 to main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166440 -0700	checkout: moving from main to ryvn/setup-v3
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166445 -0700	reset: moving to main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166445 -0700	checkout: moving from ryvn/setup-v3 to ryvn/setup-v4
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166464 -0700	commit: feat: minimal ryvn config without registry settings
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166599 -0700	checkout: moving from ryvn/setup-v4 to main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166618 -0700	checkout: moving from main to cleanup/remove-ryvn
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166618 -0700	commit: chore: remove all ryvn deployment configuration
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749166937 -0700	checkout: moving from cleanup/remove-ryvn to cleanup/pre-ryvn
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749167032 -0700	checkout: moving from cleanup/pre-ryvn to main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749167447 -0700	commit: chore: clean up repository and remove Ryvn configuration - Remove Ryvn deployment workflow and actions - Move utility scripts to scripts/ directory - Update README with current deployment setup - Clean up environment variable examples - Remove unnecessary files
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749167985 -0700	commit: fix(ci): correct docker image tag format for sha
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749168455 -0700	commit: feat: add ryvn configuration and deployment workflow
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749168676 -0700	commit: fix(ci): use main branch for ryvn-release-action
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749171525 -0700	commit: fix(ci): update ryvn deployment to use install and run steps
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749171681 -0700	commit: fix(ci): provide service name to ryvn create release
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749171992 -0700	commit: refactor(ryvn): simplify and correct ryvn.yml configuration
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749172143 -0700	commit: fix(ci): explicitly set ryvn config file path
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749172479 -0700	commit: fix(ci): add debug flag to ryvn command
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749172557 -0700	commit: fix(ryvn): correct service name to your_company-slack-bot
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749172730 -0700	commit: feat(ci): add ryvn preview deployments for pull requests
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749174133 -0700	commit: fix(docker): correct uvicorn startup command in Dockerfile
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749501110 -0700	commit: feat: update Slack OAuth scopes and add tunnel monitoring
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749501259 -0700	commit: chore: remove explicit image references from ryvn.yml
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749501629 -0700	commit: fix: add ECR registry configuration to Ryvn
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749501847 -0700	commit: fix: simplify Ryvn configuration to use platform defaults
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749502066 -0700	commit: fix: add explicit environment and image configuration for Ryvn
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749502215 -0700	commit: feat: add ECR push to CI workflow
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749503874 -0700	commit: trigger: rebuild for ECR push
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749504137 -0700	commit: fix: add ECR registry configuration with us-west-2 region
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749504448 -0700	commit: fix: make ECR configuration more explicit and force new deployments
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749505098 -0700	commit: fix: update CI workflow to authenticate with ECR before build
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749505856 -0700	commit: Update CI/CD workflow configuration
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749506695 -0700	commit: Update ECR repository naming convention for consistency and AWS compatibility
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749506920 -0700	commit: Enhance AWS ECR authentication in CI/CD workflow
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749507297 -0700	commit: Fix ECR login action registry format
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749508436 -0700	commit: Update CI/CD workflow with proper AWS ECR and ECS deployment
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749510794 -0700	commit: Describe what you changed
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749511977 -0700	commit: Remove all Ryvn-related deployment steps and jobs from CI/CD pipeline
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749514686 -0700	commit: Update Ryvn deploy workflow to use service name 'slack-bot' and remove --ttl flag
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749515079 -0700	commit: Remove unsupported --force flag from Ryvn deploy workflow for compatibility
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749581747 -0700	commit: Update Ryvn deploy workflow to use 'staging' channel for preview deployments
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749584002 -0700	commit: Fix: Use correct service name and add --version for preview releases in Ryvn deploy workflow
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749584663 -0700	commit: Remove version argument from Ryvn preview deploy step; let Ryvn handle versioning automatically
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749588754 -0700	reset: moving to origin/main
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749589220 -0700	commit: Fix: Use correct entrypoint src.main:app for Uvicorn in Dockerfile
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749589433 -0700	commit: Revert: Restore Dockerfile CMD to src.bot.main:app entrypoint
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749590095 -0700	commit: Update: Use unique version for each Ryvn release using GitHub run number
+<HEX_SECRET> <HEX_SECRET> sidv1711 <sidv@berkeley.edu> 1749590375 -0700	commit: Fix: Use src.main:app as Uvicorn entrypoint in Dockerfile to resolve ASGI app loading error

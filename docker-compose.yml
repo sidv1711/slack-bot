@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  slack-bot:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # Database
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}  # Use actual service role key
+      DATABASE_URL: ${DATABASE_URL}
+      
+      # Slack
+      SLACK_CLIENT_ID: ${SLACK_CLIENT_ID}
+      SLACK_CLIENT_SECRET: ${SLACK_CLIENT_SECRET}
+      SLACK_SIGNING_SECRET: ${SLACK_SIGNING_SECRET}
+      SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}
+      SLACK_OAUTH_REDIRECT_URI: ${SLACK_OAUTH_REDIRECT_URI:-https://api.example.com/auth/slack/callback}
+      
+      # PropelAuth - Updated with new working API key
+      PROPELAUTH_URL: https://auth.example.com
+      PROPELAUTH_API_KEY: <HEX_SECRET><HEX_SECRET>
+      PROPELAUTH_REDIRECT_URI: ${PROPELAUTH_REDIRECT_URI:-https://api.example.com/auth/callback/propelauth}
+      PROPELAUTH_CLIENT_ID: ${PROPELAUTH_CLIENT_ID:-default}
+      PROPELAUTH_CLIENT_SECRET: ${PROPELAUTH_CLIENT_SECRET:-default}
+      
+      # AI Services
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      
+      # External APIs
+      COGNISIM_API_KEY: ${COGNISIM_API_KEY}
+      
+      # App
+      ENVIRONMENT: production
+      LOG_LEVEL: DEBUG
+      NGROK_URL: ${NGROK_URL}
+    
+    depends_on:
+      - ai-microservice
+    
+    volumes:
+      - ./src:/app/src
+    
+    restart: unless-stopped
+
+  # Optional: Add a database for local development
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=slackbot
+      - POSTGRES_USER=slackbot
+      - POSTGRES_PASSWORD=slackbot_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    networks:
+      - slack-bot-network
+    profiles:
+      - with-db
+
+  # Optional: Redis for caching
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - slack-bot-network
+    profiles:
+      - with-cache
+
+  ai-microservice:
+    build: ./ai-microservice
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      LOG_LEVEL: DEBUG
+    
+    ports:
+      - "8001:8000"
+    
+    volumes:
+      - ./ai-microservice:/app
+    
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - slack-bot-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  slack-bot-network:
+    driver: bridge 

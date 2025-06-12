@@ -1,0 +1,37 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "upstream"]
+	url = https://github.com/RevylAI/slack-bot.git
+	fetch = +refs/heads/*:refs/remotes/upstream/*
+[pull]
+	rebase = false
+[branch "main"]
+	remote = upstream
+	merge = refs/heads/main
+[branch "feature/ryvn-setup"]
+	vscode-merge-base = origin/main
+	remote = upstream
+	merge = refs/heads/feature/ryvn-setup
+[branch "feature/ryvn-setup-v2"]
+	remote = upstream
+	merge = refs/heads/feature/ryvn-setup-v2
+	vscode-merge-base = origin/main
+[branch "feature/ryvn-setup-v3"]
+	vscode-merge-base = origin/main
+[branch "ryvn/setup-v3"]
+	vscode-merge-base = origin/main
+[branch "ryvn/setup-v4"]
+	remote = upstream
+	merge = refs/heads/ryvn/setup-v4
+[branch "cleanup/remove-ryvn"]
+	remote = upstream
+	merge = refs/heads/cleanup/remove-ryvn
+	vscode-merge-base = origin/main
+[remote "origin"]
+	url = https://github.com/sidv1711/slack-bot.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.your_company.tunnel-monitor</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/python3</string>
+        <string><HOME>/Documents/your_company/slack-bot-main 2/scripts/monitor_tunnel.py</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string><HOME>/Library/Logs/tunnel-monitor.err.log</string>
+    <key>StandardOutPath</key>
+    <string><HOME>/Library/Logs/tunnel-monitor.out.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>SLACK_MONITOR_WEBHOOK</key>
+        <string>YOUR_SLACK_WEBHOOK_URL</string>
+    </dict>
+</dict>
+</plist> 

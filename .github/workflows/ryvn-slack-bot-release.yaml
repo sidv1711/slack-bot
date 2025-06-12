@@ -1,0 +1,130 @@
+name: Build & Release slack-bot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**"
+      - ".github/workflows/ryvn-slack-bot-release.yaml"
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "**"
+
+env:
+  SERVICE_NAME: slack-bot
+
+jobs:
+  generate-tag:
+    name: Generate Release Tag
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    outputs:
+      version: ${{ steps.generate-tag.outputs.version }}
+      new_tag: ${{ steps.generate-tag.outputs.new_tag }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Ryvn CLI
+        uses: ryvn-technologies/install-ryvn-cli@v1.0.0
+
+      - name: Generate Release Tag
+        id: generate-tag
+        env:
+          RYVN_CLIENT_ID: ${{ secrets.RYVN_CLIENT_ID }}
+          RYVN_CLIENT_SECRET: ${{ secrets.RYVN_CLIENT_SECRET }}
+        run: |
+          # Generate new tag using ryvn CLI
+          tag_info=$(ryvn generate-release-tag ${{ env.SERVICE_NAME }} --prefix=slack-bot@ -o json --default-bump-minor)
+          
+          # Extract version and tag from JSON output
+          version=$(echo "$tag_info" | jq -r '.version')
+          new_tag=$(echo "$tag_info" | jq -r '.tag')
+
+          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
+
+
+  build:
+    name: Build
+    needs: [generate-tag]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build and Push
+        uses: ryvn-technologies/ryvn-build-action@v1.2.0
+        with:
+          service_name: ${{ env.SERVICE_NAME }}
+          version: ${{ needs.generate-tag.result == 'success' && needs.generate-tag.outputs.version || '' }}
+          build_only: ${{ github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
+          ryvn_client_id: ${{ secrets.RYVN_CLIENT_ID }}
+          ryvn_client_secret: ${{ secrets.RYVN_CLIENT_SECRET }}
+
+  release:
+    name: Create Release
+  
+    needs: [generate-tag, build]
+  
+    if: |
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch) &&
+      !contains(github.event.head_commit.message, '[skip-release]') &&
+      !contains(github.event.pull_request.title, '[skip-release]')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Ryvn CLI
+        uses: ryvn-technologies/install-ryvn-cli@v1.0.0
+
+      - name: Create Ryvn Release
+        env:
+          RYVN_CLIENT_ID: ${{ secrets.RYVN_CLIENT_ID }}
+          RYVN_CLIENT_SECRET: ${{ secrets.RYVN_CLIENT_SECRET }}
+        run: |
+          version="${{ needs.generate-tag.outputs.new_tag }}"
+          version=${version#slack-bot@}
+          version=${version#@}
+          ryvn create release ${{ env.SERVICE_NAME }} $version
+
+      - name: Create GitHub Tag
+        run: |
+          new_tag="${{ needs.generate-tag.outputs.new_tag }}"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git tag $new_tag
+          git push origin $new_tag
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.generate-tag.outputs.new_tag }}
+          name: ${{ needs.generate-tag.outputs.new_tag }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false

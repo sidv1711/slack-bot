@@ -1,0 +1,146 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  actions: read
+  security-events: write
+  packages: write
+  id-token: write
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  test:
+    name: Test & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Remove any .env files to prevent conflicts
+        run: |
+          echo "=== Cleaning Environment Files ==="
+          rm -f .env .env.local .env.development .env.test .env.production
+          echo "Removed any existing .env files"
+          ls -la | grep -E '\.env' || echo "No .env files found - good!"
+          echo "=================================="
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Debug environment
+        env:
+          DEVELOPMENT_MODE: true
+        run: |
+          echo "=== Environment Debug ==="
+          echo "Python version:"
+          python --version
+          echo "Working directory:"
+          pwd
+          echo "Environment variables:"
+          echo "DEVELOPMENT_MODE: $DEVELOPMENT_MODE"
+          echo "Directory contents:"
+          ls -la
+          echo "=========================="
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Debug Poetry
+        run: |
+          echo "=== Poetry Debug ==="
+          echo "Poetry version:"
+          poetry --version
+          echo "Poetry config:"
+          poetry config --list
+          echo "===================="
+      - name: Install dependencies (step by step)
+        run: |
+          echo "=== Installing Dependencies ==="
+          echo "1. Checking poetry.lock..."
+          ls -la poetry.lock
+          echo "2. Installing dependencies with verbose output..."
+          poetry install --with dev --verbose
+          echo "3. Verifying virtual environment..."
+          poetry env info
+          echo "4. Listing installed packages..."
+          poetry show
+          echo "Installation completed successfully"
+      - name: Test simple Python execution
+        env:
+          DEVELOPMENT_MODE: true
+        run: |
+          echo "=== Testing Python Execution ==="
+          poetry run python --version
+          poetry run python -c "print('Hello from Poetry virtual environment')"
+          poetry run python -c "import os; print('DEVELOPMENT_MODE:', os.getenv('DEVELOPMENT_MODE', 'NOT SET'))"
+          echo "Python execution test passed"
+      - name: Test basic imports
+        env:
+          DEVELOPMENT_MODE: true
+          SLACK_BOT_TOKEN: <SLACK_TOKEN>
+          SLACK_SIGNING_SECRET: test-secret
+          SLACK_CLIENT_ID: test-client-id
+          SLACK_CLIENT_SECRET: test-client-secret
+          SLACK_OAUTH_REDIRECT_URI: http://localhost:8000/auth/slack/callback
+          PROPELAUTH_API_KEY: test-api-key
+          PROPELAUTH_URL: https://test.propelauthtest.com
+          PROPELAUTH_REDIRECT_URI: http://localhost:8000/auth/callback/propelauth
+          PROPELAUTH_CLIENT_ID: test-propel-client-id
+          PROPELAUTH_CLIENT_SECRET: test-propel-client-secret
+          SUPABASE_URL: https://test.supabase.co
+          SUPABASE_KEY: test-supabase-key
+          SUPABASE_SERVICE_ROLE_KEY: test-service-role-key
+        run: |
+          echo "=== Testing Basic Imports ==="
+          poetry run python -c "import sys; print('Python path:', sys.path[:3])"
+          poetry run python -c "import os; print('Current dir:', os.getcwd())"
+          poetry run python -c "import sys; sys.path.insert(0, '.'); from src.config.settings import Settings; print('✓ Settings import works')"
+          echo "Basic imports test passed"
+      - name: Lint with ruff (basic only)
+        run: |
+          echo "Running linter..."
+          poetry run ruff check . --select=E9,F63,F7,F82
+          echo "Linting completed successfully"
+      - name: Run basic tests only
+        env:
+          DEVELOPMENT_MODE: true
+          SLACK_BOT_TOKEN: <SLACK_TOKEN>
+          SLACK_SIGNING_SECRET: test-secret
+          SLACK_CLIENT_ID: test-client-id
+          SLACK_CLIENT_SECRET: test-client-secret
+          SLACK_OAUTH_REDIRECT_URI: http://localhost:8000/auth/slack/callback
+          PROPELAUTH_API_KEY: test-api-key
+          PROPELAUTH_URL: https://test.propelauthtest.com
+          PROPELAUTH_REDIRECT_URI: http://localhost:8000/auth/callback/propelauth
+          PROPELAUTH_CLIENT_ID: test-propel-client-id
+          PROPELAUTH_CLIENT_SECRET: test-propel-client-secret
+          SUPABASE_URL: https://test.supabase.co
+          SUPABASE_KEY: test-supabase-key
+          SUPABASE_SERVICE_ROLE_KEY: test-swervice-role-key
+        run: |
+          echo "Running tests..."
+          poetry run python -m pytest tests/test_main.py::TestHealthEndpoints::test_root_health_check -v
+          echo "Tests completed successfully"
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table' 
