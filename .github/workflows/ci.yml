@@ -63,6 +63,11 @@ jobs:
           echo "Poetry config:"
           poetry config --list
           echo "===================="
+      - name: Regenerate lock file if needed
+        run: |
+          echo "=== Ensuring poetry.lock is fresh ==="
+          poetry lock --no-update || poetry lock
+          echo "Lock file updated"
       - name: Install dependencies (step by step)
         run: |
           echo "=== Installing Dependencies ==="
